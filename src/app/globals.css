@@ -1,26 +1,242 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Self-hosted fonts: downloaded from Google Fonts and served from our own domain, with no
+   unicode-range restriction, so they always apply — immune to the next/font/google unicode-range
+   corruption bug hit earlier, and to any ad-blocker/privacy extension that blocks third-party
+   font CDN requests (fonts.googleapis.com / fonts.gstatic.com). */
+@font-face {
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/fredoka-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/dm-sans-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Schoolbell";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/schoolbell-400.woff2") format("woff2");
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffdf7;
+  --foreground: #0b2038;
+
+  --color-brand-yellow: #ffd93d;
+  --color-brand-yellow-soft: #fff3cf;
+  --color-brand-orange: #f25334;
+  --color-brand-green: #75c137;
+  --color-brand-teal: #26a6a1;
+  --color-brand-blue: #2390ff;
+  --color-brand-amber: #ffaa23;
+  --color-brand-slate: #5f7999;
+
+  --color-tile-pink: #f8c9bf;
+  --color-tile-green: #d2e5ba;
+  --color-tile-amber: #fcdfb4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-brand-yellow: var(--color-brand-yellow);
+  --color-brand-yellow-soft: var(--color-brand-yellow-soft);
+  --color-brand-orange: var(--color-brand-orange);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-teal: var(--color-brand-teal);
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-amber: var(--color-brand-amber);
+  --color-brand-slate: var(--color-brand-slate);
+
+  --color-tile-pink: var(--color-tile-pink);
+  --color-tile-green: var(--color-tile-green);
+  --color-tile-amber: var(--color-tile-amber);
+
+  --font-heading: "Fredoka", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-script: "Schoolbell", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--background);
+    color: #7e8185;
+    font-family: var(--font-body), Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.125;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading), var(--font-body), sans-serif;
+    color: var(--foreground);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* Organic "blob" shapes from the theme's service-two__item (Day at First School tiles) */
+.blob-frame {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 286"><path d="M14.5418 60.1758C32.7176 27.4886 67.2071 4.58352 104.174 0.674149C153.081 -4.49242 202.774 24.1476 226.74 67.4434C250.707 110.739 249.734 165.987 227.936 210.437C214.8 237.234 194.096 260.794 167.584 274.175C141.072 287.556 108.581 289.916 81.6248 277.464C40.8147 258.589 29.1815 217.825 14.4052 179.076C-0.71285 139.465 -7.32377 99.5623 14.5418 60.1758Z"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 286"><path d="M14.5418 60.1758C32.7176 27.4886 67.2071 4.58352 104.174 0.674149C153.081 -4.49242 202.774 24.1476 226.74 67.4434C250.707 110.739 249.734 165.987 227.936 210.437C214.8 237.234 194.096 260.794 167.584 274.175C141.072 287.556 108.581 289.916 81.6248 277.464C40.8147 258.589 29.1815 217.825 14.4052 179.076C-0.71285 139.465 -7.32377 99.5623 14.5418 60.1758Z"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  aspect-ratio: 245 / 286;
+}
+
+.blob-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167.000000 161.000000"><g transform="translate(0.000000,161.000000) scale(0.050000,-0.050000)"><path d="M1530 3192 c-1489 -292 -2068 -2249 -891 -3010 731 -472 2074 -10 2505 862 552 1121 -398 2386 -1614 2148z"/></g></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167.000000 161.000000"><g transform="translate(0.000000,161.000000) scale(0.050000,-0.050000)"><path d="M1530 3192 c-1489 -292 -2068 -2249 -891 -3010 731 -472 2074 -10 2505 862 552 1121 -398 2386 -1614 2148z"/></g></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 167 / 161;
+}
+
+/* Small decorative accent blob (about-*__image__one-bottom / -left / -right) */
+.accent-blob-1 {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 164"><path d="M206.502 86.6589C211.26 64.7577 204.271 39.8524 191.41 24.2935C149.742 -26.0921 77.0734 9.17969 61.4803 63.812C54.4178 88.5504 63.1158 115.106 43.9172 135.821C32.45 148.171 20.4439 150.879 0 159.224C65.0487 167.81 144.687 170.554 191.485 116.275C197.209 109.617 204.569 95.5973 206.502 86.6589Z"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 164"><path d="M206.502 86.6589C211.26 64.7577 204.271 39.8524 191.41 24.2935C149.742 -26.0921 77.0734 9.17969 61.4803 63.812C54.4178 88.5504 63.1158 115.106 43.9172 135.821C32.45 148.171 20.4439 150.879 0 159.224C65.0487 167.81 144.687 170.554 191.485 116.275C197.209 109.617 204.569 95.5973 206.502 86.6589Z"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  aspect-ratio: 208 / 164;
+}
+
+/* Program card photo — wavy scalloped bottom edge (program-three__item__image) */
+.wavy-scallop-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 370 237" xmlns="http://www.w3.org/2000/svg"><path d="M137 202.5C73.5 167 4.33333 201 -45 213.5V0H389C395.167 89.3333 403.8 261.1 389 233.5C370.5 199 302.5 222.5 247.5 233.5C210.08 240.984 174.627 223.535 137 202.5Z"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 370 237" xmlns="http://www.w3.org/2000/svg"><path d="M137 202.5C73.5 167 4.33333 201 -45 213.5V0H389C395.167 89.3333 403.8 261.1 389 233.5C370.5 199 302.5 222.5 247.5 233.5C210.08 240.984 174.627 223.535 137 202.5Z"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+/* Curriculum/Activity card — rounded pill blob (blog-card-four__image) */
+.pill-blob-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 316 203" xmlns="http://www.w3.org/2000/svg"><path d="M14.8542 33.0286C37.9682 -12.9298 263.67 -9.0465 296.301 33.0286C328.932 75.1037 315.336 162.489 296.301 185.792C277.266 209.095 31.0518 210.265 14.8542 179.803C-1.34341 149.34 -8.25975 78.987 14.8542 33.0286Z"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 316 203" xmlns="http://www.w3.org/2000/svg"><path d="M14.8542 33.0286C37.9682 -12.9298 263.67 -9.0465 296.301 33.0286C328.932 75.1037 315.336 162.489 296.301 185.792C277.266 209.095 31.0518 210.265 14.8542 179.803C-1.34341 149.34 -8.25975 78.987 14.8542 33.0286Z"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 316 / 203;
+}
+
+/* Gallery/blog listing card — wavy bottom edge (blog-card__image) */
+.wavy-card-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 232" fill="none"><path d="M138 227.5C-8.5 246.5 5.33333 195 -44 207.5V-6H390C396.167 83.3333 421.318 227.5 390 227.5H248.5C210.339 227.5 180.749 221.956 138 227.5Z" fill="black"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 232" fill="none"><path d="M138 227.5C-8.5 246.5 5.33333 195 -44 207.5V-6H390C396.167 83.3333 421.318 227.5 390 227.5H248.5C210.339 227.5 180.749 221.956 138 227.5Z" fill="black"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom center;
+  mask-position: bottom center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+/* After School Club activity card — flower-petal blob (team-card__image) */
+.petal-blob-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.000000 323.000000"><g transform="translate(0.000000,323.000000) scale(0.050000,-0.050000)"><path d="M2604 6431 c-971 -184 -1745 -939 -2241 -2184 -795 -1996 -232 -3697 1377 -4154 2121 -604 4630 1739 4223 3945 -244 1322 -2087 2635 -3359 2393z"/></g></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.000000 323.000000"><g transform="translate(0.000000,323.000000) scale(0.050000,-0.050000)"><path d="M2604 6431 c-971 -184 -1745 -939 -2241 -2184 -795 -1996 -232 -3697 1377 -4154 2121 -604 4630 1739 4223 3945 -244 1322 -2087 2635 -3359 2393z"/></g></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 300 / 323;
+}
+
+/* "Why First School" image — rounded blob (contact-two__thumb__main) */
+.rounded-blob-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 555 573" xmlns="http://www.w3.org/2000/svg"><path d="M554.18 277.09C540.985 473.307 446.919 479.365 277.09 554.18C119.604 623.557 0 485.225 0 277.09C0 100.449 124.057 0 277.09 0C493.739 0 554.18 124.057 554.18 277.09Z" fill="black"/></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 555 573" xmlns="http://www.w3.org/2000/svg"><path d="M554.18 277.09C540.985 473.307 446.919 479.365 277.09 554.18C119.604 623.557 0 485.225 0 277.09C0 100.449 124.057 0 277.09 0C493.739 0 554.18 124.057 554.18 277.09Z" fill="black"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 555 / 573;
+}
+
+/* Video/Excellence image — starburst blob (video-two__btn-shape) */
+.starburst-blob-photo {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.000000 191.000000"><g transform="translate(0.000000,191.000000) scale(0.050000,-0.050000)"><path d="M3690 3807 c-238 -35 -468 -148 -631 -311 -148 -148 -209 -153 -441 -38 -533 267 -1139 83 -1422 -432 l-73 -134 -128 -4 c-363 -12 -615 -297 -590 -667 l11 -154 -88 -55 c-601 -380 -297 -1342 424 -1342 l183 0 56 -106 c331 -633 1218 -743 1711 -211 l92 99 105 -94 c500 -449 1302 -338 1624 223 47 82 76 115 97 107 545 -198 1235 212 1358 808 131 634 -379 1281 -1011 1284 l-83 0 -15 104 c-78 568 -633 1002 -1179 923z"/></g></svg>');
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.000000 191.000000"><g transform="translate(0.000000,191.000000) scale(0.050000,-0.050000)"><path d="M3690 3807 c-238 -35 -468 -148 -631 -311 -148 -148 -209 -153 -441 -38 -533 267 -1139 83 -1422 -432 l-73 -134 -128 -4 c-363 -12 -615 -297 -590 -667 l11 -154 -88 -55 c-601 -380 -297 -1342 424 -1342 l183 0 56 -106 c331 -633 1218 -743 1711 -211 l92 99 105 -94 c500 -449 1302 -338 1624 223 47 82 76 115 97 107 545 -198 1235 212 1358 808 131 634 -379 1281 -1011 1284 l-83 0 -15 104 c-78 568 -633 1002 -1179 923z"/></g></svg>');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 300 / 191;
+}
+
+/* Hero blob background (main-slider-two__bg-shape) color cycle */
+@keyframes hero-blob-color {
+  0% {
+    fill: #ffaa23;
+  }
+  35% {
+    fill: #f25334;
+  }
+  70% {
+    fill: #75c137;
+  }
+  100% {
+    fill: #ffaa23;
+  }
+}
+.hero-blob-shape {
+  animation: hero-blob-color 6s ease infinite;
+}
+
+/* Gentle float for the hero's hand-drawn doodle shapes (pencil, rocket, balloon, etc) */
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-gentle-float {
+  animation: gentle-float 4s ease-in-out infinite;
 }
