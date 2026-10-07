@@ -16,7 +16,12 @@ export default async function AdminLoginPage({
         <h1 className="mb-6 text-center text-xl font-bold text-[#0b2038]">
           First School Admin
         </h1>
-        {error && (
+        {error === "rate_limit" && (
+          <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
+            Too many attempts. Please wait a few minutes and try again.
+          </p>
+        )}
+        {error === "1" && (
           <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
             Incorrect password.
           </p>

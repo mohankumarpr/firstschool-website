@@ -52,6 +52,16 @@ export function AdmissionForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {/* Honeypot — hidden from real users, left empty; bots that auto-fill every
+          field tend to fill it, which marks the submission as spam server-side. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
       <input name="parentName" required placeholder="Parent Name *" className={inputClass} />
       <input name="contactNo" required type="tel" placeholder="Contact No *" className={inputClass} />
       <input name="email" required type="email" placeholder="Email *" className={inputClass} />

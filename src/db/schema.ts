@@ -140,3 +140,11 @@ export const contactEnquiries = pgTable("contact_enquiries", {
   message: text("message").notNull().default(""),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+// Backs simple rate limiting (admin login attempts, form submissions) — Postgres-backed
+// rather than in-memory so it works correctly across serverless invocations too.
+export const rateLimitHits = pgTable("rate_limit_hits", {
+  id: serial("id").primaryKey(),
+  key: text("key").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
